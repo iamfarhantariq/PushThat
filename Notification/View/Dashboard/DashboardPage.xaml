@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="clr-namespace:Notification.Renderers"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             x:Name="viewCell"
+             mc:Ignorable="d"
+             x:Class="Notification.View.Dashboard.DashboardPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Spacing="0"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+
+            <StackLayout
+                x:Name="NavStack"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                HeightRequest="45"
+                Margin="0,0,0,5"
+                BackgroundColor="{DynamicResource StackLayoutColor}"
+                IsVisible="{Binding NavStackIsVisible}">
+                <Grid Margin="10,5,10,5" IsClippedToBounds="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="StartAndExpand"
+                        IsChecked="{Binding SelectAllCheckBox}"
+                        Color="White"/>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        TextColor="White"
+                        FontSize="16"
+                        FontFamily="{StaticResource NormalFont}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Select All "/>
+                                <Span Text="("/>
+                                <Span Text="{Binding Counter}"/>
+                                <Span Text=")"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <ImageButton 
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HeightRequest="26"
+                        WidthRequest="26"
+                        Aspect="Fill"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand" 
+                        Source="WhiteBin.png"
+                        BackgroundColor="{DynamicResource StackLayoutColor}"
+                        Command="{Binding DeleteTappedCommand}"/>
+
+                    <ImageButton 
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        HeightRequest="25"
+                        WidthRequest="25"
+                        Aspect="Fill"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand" 
+                        Source="Cancel.png"
+                        BackgroundColor="{DynamicResource StackLayoutColor}"
+                        Command="{Binding CancelTappedCommand}"/>
+
+                </Grid>
+            </StackLayout>
+
+            <viewModel:RoundedSearchBar
+                x:Name="SBText"
+                IsVisible="{Binding SearchBarVisible}"
+                Text="{Binding SearchText}"
+                Margin="10,5,10,5"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="15"
+                PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                TextChanged="RoundedSearchBar_TextChanged"
+                Placeholder="Search" />
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Image Source="NoMessage.png" IsVisible="{Binding NoMessageImage}" HeightRequest="200" WidthRequest="200"
+                       Opacity="90" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All" Orientation="Vertical"
+                Margin="0,0,0,60">
+                
+                <ListView
+                        x:Name="LvMessages" IsVisible="{Binding MessageListViewIsVisible}"
+                        IsPullToRefreshEnabled="{Binding IsPullToRefreshEnabled}"
+                        RefreshCommand="{Binding RefreshCommand}"
+                        IsRefreshing="{Binding IsRefreshing}"
+                        HasUnevenRows="True"
+                        SeparatorVisibility="None"
+                        CachingStrategy="RecycleElement"
+                        SelectionMode="None"
+                        ItemsSource="{Binding ItemSource}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    BackgroundColor="{DynamicResource ListViewBG}"
+                                    Margin="10,0,10,10">
+                                    <mr:Grid
+                                        BackgroundColor="{Binding BGColor}"
+                                        ClassId="{Binding MessageId}"
+                                        RowSpacing="0"
+                                        ColumnSpacing="5" Padding="5,10,5,10"
+                                        TappedCommand="{Binding TappedCommand}"
+                                        Tapped="Grid_Tapped"
+                                        LongPressingCommand="{Binding LongPressingCommand}"
+                                        LongPressing="Grid_LongPressing">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <ff:CachedImage Grid.Row="0" Grid.Column="0"
+                                                        Grid.RowSpan="2"
+                                                        DownsampleToViewSize="True"
+                                                        HeightRequest="35"
+                                                        WidthRequest="35"
+                                                        BackgroundColor="Transparent"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Start"
+                                                        Source="{Binding ImageUrl}"/>
+                                        <Label Grid.Row="0" Grid.Column="1"
+                                               HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand"
+                                               Margin="0" FontFamily="{StaticResource BoldFont}" Text="{Binding MessageTitle}"
+                                               Style="{StaticResource NormalLabelStyle}"/>
+
+                                        <Label Grid.Row="1" Grid.Column="1" VerticalOptions="StartAndExpand"
+                                               HorizontalOptions="StartAndExpand"
+                                               Margin="0"
+                                               Style="{StaticResource NormalLabelStyle}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="From " FontSize="10"/>
+                                                    <Span Text="{Binding MessageFrom}" FontAttributes="Bold" FontSize="10"/>
+                                                    <Span Text=" at " FontSize="10"/>
+                                                    <Span Text="{Binding MessageTime}" FontAttributes="Bold" FontSize="10"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            HorizontalTextAlignment="Start"
+                                            FontSize="14"
+                                            Margin="0"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding MessageBody}"
+                                            MaxLines="{Binding MaxLinesToPreview}"
+                                            Style="{StaticResource NormalLabelStyle}"/>
+                                    </mr:Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout
+            x:Name="LowerStack"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            Spacing="0"
+            Orientation="Vertical">
+            <StackLayout
+                Orientation="Horizontal"
+                HeightRequest="30"
+                BackgroundColor="Transparent">
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Swiped="UpSwiped"  Direction="Up"/>
+                    <SwipeGestureRecognizer Swiped="DownSwiped" Direction="Down"/>
+                    <TapGestureRecognizer Tapped="LowerStackTapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+                <Image
+                    Margin="0,0,0,5"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="100"
+                    Source="Bar.png"/>
+            </StackLayout>
+            <Frame
+                Padding="0"
+                BackgroundColor="{DynamicResource StackLayoutColor}"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Grid IsClippedToBounds="True" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0"
+                        Padding="20,20,20,0"
+                        IsClippedToBounds="True"
+                        RowSpacing="0">
+                        <Grid.GestureRecognizers>
+                            <SwipeGestureRecognizer Swiped="UpSwiped"  Direction="Up"/>
+                            <SwipeGestureRecognizer Swiped="DownSwiped" Direction="Down"/>
+                            <TapGestureRecognizer Tapped="LowerStackTapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0" Grid.Column="0"
+                            FontAttributes="Bold" FontSize="16" MaxLines="1"
+                            HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                            TextColor="White">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding CategoryHeader}"/>
+                                    <Span Text=" ("/>
+                                    <Span Text="{Binding LblHeaderCount}"/>
+                                    <Span Text=")"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <ImageButton
+                            x:Name="Arrow"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Aspect="Fill"
+                            BackgroundColor="{DynamicResource StackLayoutColor}"
+                            HeightRequest="30"
+                            WidthRequest="30"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Source="Arrow.png"
+                            Clicked="LowerStackTapped"/>
+
+                        <ImageButton
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Aspect="Fill"
+                            BackgroundColor="{DynamicResource StackLayoutColor}"
+                            HeightRequest="30"
+                            WidthRequest="30"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Source="Setting.png" 
+                            Clicked="SettingImgClicked"/>
+                    </Grid>
+
+                    <BoxView
+                        Grid.Row="1"
+                        Margin="0,10,0,10"
+                        BackgroundColor="LightGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"/>
+                    <StackLayout
+                        Grid.Row="2" Spacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand">
+                        <Grid ColumnSpacing="20" Margin="10,0,10,0"
+                              ClassId="AllMessages">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Source="AllMessage.png" HeightRequest="30" WidthRequest="30"
+                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                Grid.Row="0" Grid.Column="0"/>
+                            <Label TextColor="White" Margin="0" Style="{StaticResource NormalLabelStyle}"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"
+                                   FontSize="15" FontAttributes="Bold"
+                                   Grid.Row="0" Grid.Column="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="All Messages"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="{Binding AllMessagesCount}"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <BoxView
+                                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                BackgroundColor="White" HeightRequest="0.5"/>
+                        </Grid>
+                        <ListView
+                            CachingStrategy="RecycleElement"
+                            SeparatorVisibility="Default"
+                            SeparatorColor="White"
+                            SelectionMode="None"
+                            VerticalOptions="FillAndExpand"
+                            HasUnevenRows="True"
+                            Margin="10,0,10,0"
+                            ItemsSource="{Binding CategoriesList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid ColumnSpacing="10" Margin="0,5,0,5"
+                                              ClassId="{Binding MessageFrom}">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                            </Grid.GestureRecognizers>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ff:CachedImage
+                                                Source="{Binding ImageUrl}" HeightRequest="30" WidthRequest="30"
+                                                DownsampleToViewSize="True" Margin="0,0,10,0"
+                                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                                Grid.Row="0" Grid.Column="0"/>
+                                            <Label TextColor="White" Margin="0" Style="{StaticResource NormalLabelStyle}"
+                                                   VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"
+                                                   FontSize="15" FontAttributes="Bold"
+                                                   Grid.Row="0" Grid.Column="1">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding MessageFrom}"/>
+                                                        <Span Text=" ("/>
+                                                        <Span Text="{Binding Count}"/>
+                                                        <Span Text=")"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+        <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="Notification.View.EditCategory.EditCategoryPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <Label Style="{StaticResource NavBarNameStyle}" Text="Edit Category Setting" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ListView x:Name="ListViewCategories" CachingStrategy="RecycleElement" SeparatorVisibility="Default"
+                  SeparatorColor="LightGray" VerticalOptions="FillAndExpand" HasUnevenRows="True" Margin="10,0,10,0"
+                  ItemsSource="{Binding CategoryList}" ItemTapped="ListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid BackgroundColor="{DynamicResource PageBackgroundColor}" ColumnSpacing="10" Padding="0,5,0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ff:CachedImage Source="{Binding ImageUrl}" HeightRequest="30" WidthRequest="30"
+                                            DownsampleToViewSize="True" Margin="0,0,10,0"
+                                            HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                                            Grid.Row="0" Grid.Column="0"/>
+                            <Label Text="{Binding MessageFrom}" TextColor="{DynamicResource PrimaryColor}" Margin="0" Style="{StaticResource NormalLabelStyle}"
+                                   VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Grid.Row="0" Grid.Column="1"/>
+                            <Image Grid.Row="0" Grid.Column="2" Style="{StaticResource RightArrowImageStyle}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

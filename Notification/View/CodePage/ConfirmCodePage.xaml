@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             mc:Ignorable="d"
+             x:Class="Notification.View.CodePage.ConfirmCodePage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <Label Style="{StaticResource NavBarNameStyle}"
+               Text="SUBMIT CODE" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Aspect="AspectFill" BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="StartAndExpand" Source="SigninCurve.png" />
+            <StackLayout Spacing="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Margin="0" RowSpacing="0"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      IsClippedToBounds="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Grid.Row="0"
+                        Padding="10,30,10,0"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Label
+                            Style="{StaticResource LabelSubtitleStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Enter your 6-digit code that have been sent to your email "/>
+                                    <Span Text="{Binding Email}"/>
+                                    <Span Text=". If you did not get any code, click resend button to get again."/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Margin="20,20,20,20" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <Frame CornerRadius="10" BackgroundColor="#ffffff" Padding="10,0,10,10">
+                            <Grid ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="EntOne" Grid.Row="0" Grid.Column="0" HorizontalOptions="EndAndExpand"
+                                       ClassId="0" Style="{StaticResource EntryCodeStyle}" Focused="Entry_Focused"
+                                       TextChanged="Entry_TextChanged"/>
+                                <Entry x:Name="EntTwo" Grid.Row="0" Grid.Column="1" Focused="Entry_Focused"
+                                       ClassId="1" Style="{StaticResource EntryCodeStyle}"
+                                       TextChanged="Entry_TextChanged"/>
+                                <Entry x:Name="EntThree" Grid.Row="0" Grid.Column="2" Focused="Entry_Focused"
+                                       ClassId="2" Style="{StaticResource EntryCodeStyle}"
+                                       TextChanged="Entry_TextChanged"/>
+                                <Entry x:Name="EntFour" Grid.Row="0" Grid.Column="3" Focused="Entry_Focused"
+                                       ClassId="3" Style="{StaticResource EntryCodeStyle}"
+                                       TextChanged="Entry_TextChanged"/>
+                                <Entry x:Name="EntFive" Grid.Row="0" Grid.Column="4" Focused="Entry_Focused"
+                                       ClassId="4" Style="{StaticResource EntryCodeStyle}"
+                                       TextChanged="Entry_TextChanged"/>
+                                <Entry x:Name="EntSix" Grid.Row="0" Grid.Column="5" HorizontalOptions="StartAndExpand"
+                                       ClassId="5" Style="{StaticResource EntryCodeStyle}" Focused="Entry_Focused"
+                                       TextChanged="Entry_TextChanged"/>
+                            </Grid>
+                        </Frame>
+
+                        <Label Text="{Binding CountingBack}" HorizontalOptions="StartAndExpand"
+                               TextColor="{DynamicResource PrimaryTextColor}" FontSize="15"
+                               IsEnabled="{Binding IsEnableResendButton}" Margin="10,0,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ResendCodeCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="2"
+                        Padding="0,0,0,20"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="EndAndExpand">
+                        <Button 
+                            VerticalOptions="EndAndExpand"
+                            Text="Submit"
+                            Clicked="Button_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

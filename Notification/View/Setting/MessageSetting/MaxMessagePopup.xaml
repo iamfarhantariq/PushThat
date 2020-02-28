@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="Notification.View.Setting.MessageSetting.MaxMessagePopup"
+             BackgroundColor="{DynamicResource PopBG}">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame Style="{StaticResource PopupFrameStyle}">
+        <StackLayout Padding="0">
+            <Label Text="Max Messages to Keep" Style="{StaticResource PopupLabelHeaderStyle}"/>
+            <ScrollView>
+                <StackLayout>
+                    <Grid
+                        x:Name="GridMaxMessage"
+                        IsClippedToBounds="True"
+                        RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            x:Name="LblTwoFive"
+                            Grid.Row="0"
+                            Grid.Column="0" 
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="25" />
+                        <CheckBox
+                            x:Name="CBxTwoFive"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            ClassId="1"
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="1" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblFiveZero"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="50" />
+                        <CheckBox
+                            x:Name="CBxFiveZero"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            ClassId="2" 
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="3" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblHundred"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="100" />
+                        <CheckBox
+                            x:Name="CBxHundrede"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            ClassId="3"                           
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="5" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblOneFifty"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="150" />
+                        <CheckBox
+                            x:Name="CBxOneFifty"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            ClassId="4"                          
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="7" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblTwoHundred"
+                            Grid.Row="8"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="200" />
+                        <CheckBox
+                            x:Name="CBxTwoHundred"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            ClassId="5"                            
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="9" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblTwoFifty"
+                            Grid.Row="10"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="250" />
+                        <CheckBox
+                            x:Name="CBxTwoFifty"
+                            Grid.Row="10"
+                            Grid.Column="1"
+                            ClassId="6"                         
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="11" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblFiveHundred"
+                            Grid.Row="12"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="500" />
+                        <CheckBox
+                            x:Name="CBxFiveHundred"
+                            Grid.Row="12"
+                            Grid.Column="1"
+                            ClassId="7"                            
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="13" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            x:Name="LblThousand"
+                            Grid.Row="14"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="1000" />
+                        <CheckBox
+                            x:Name="CBxThousand"
+                            Grid.Row="14"
+                            Grid.Column="1"
+                            ClassId="8"                          
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+
+                        <Button
+                            Grid.Row="15"
+                            Grid.Column="0"
+                            Style="{StaticResource PopupLastButton}"
+                            Text="Cancel" Clicked="Button_Clicked"/>
+                        <Button
+                            Grid.Row="15"
+                            Grid.Column="1"
+                            Style="{StaticResource PopupLastButton}"
+                            Text="Save" Clicked="SaveButton_Clicked"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Notification.Themes.DarkTheme">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BaseTheme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Color x:Key="PageBackgroundColor">#3B3C36</Color>
+    <Color x:Key="NavigationBarColor">#151515</Color>
+    <Color x:Key="ListViewBG">#262626</Color>
+    <Color x:Key="PrimaryColor">White</Color>
+    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="SettingHeader">WhiteSmoke</Color>
+    <Color x:Key="SettingName">White</Color>
+    <Color x:Key="SettingProperty">#FFFFF0</Color>
+    <Color x:Key="SettingDiscription">LightGray</Color>
+    <Color x:Key="StackLayoutSeprator">Black</Color>
+    <Color x:Key="StackLayoutColor">#2a68b0</Color>
+    <Color x:Key="ForgetPassword">White</Color>
+    <Color x:Key="CheckBox">#2a68b0</Color>
+    <Color x:Key="PopBG">#D9000000</Color>
+    <Color x:Key="PopUnderLine">Black</Color>
+    <Color x:Key="PrimaryTextColor">White</Color>
+    <Color x:Key="SecondaryTextColor">#FFFFF0</Color>
+    <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
+    <Color x:Key="WhiteColor">White</Color>
+    <Color x:Key="TransparentColor">Transparent</Color>
+    <Color x:Key="FrameContainerElement">Black</Color>
+
+</ResourceDictionary>

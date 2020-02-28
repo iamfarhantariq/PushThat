@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             mc:Ignorable="d"
+             x:Class="Notification.View.Setting.SettingPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <Label Text="Setting" Style="{StaticResource NavBarNameStyle}" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ScrollView>
+                    <Grid ColumnSpacing="10" IsClippedToBounds="True" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--#region userkey-->
+                        <StackLayout Grid.Row="0" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="{Binding Notification}" />
+                        </StackLayout>
+                        <Label Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Style="{StaticResource LabelSettingNameStyle}" Text="{Binding NotificationKey, Mode=TwoWay}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding UserKeyTappedToCopyCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout Grid.Row="3" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Tap to copy to clipboard" />
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="EDIT CATEGORY" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Edit Categories-->
+                        <Label Grid.Row="4" Style="{StaticResource LabelSettingNameStyle}" Text="Edit categories setting" />
+                        <Image Grid.Row="4" Style="{StaticResource RightArrowImageStyle}"/>
+                        <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EditCategoryTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <Label Grid.Row="5" Style="{StaticResource LabelSettingNameStyle}" Text="Edit ticket setting" />
+                        <Image Grid.Row="5" Style="{StaticResource RightArrowImageStyle}"/>
+                        <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EditTicketTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        
+                        <StackLayout Grid.Row="6" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="You can set your custom image and category name by editing it and uploading an image form gallery" />
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="MESSAGE SETTING" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region max message to keep-->
+                        <Label Grid.Row="7" Style="{StaticResource LabelSettingNameStyle}" Text="Max messages to keep" />
+                        <Label Grid.Row="7" Text="{Binding MaxMessageToKeep}" Style="{StaticResource LabelSettingPropertyStyle}" />
+                        <Image Grid.Row="7" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding MaxMessagesToKeepTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region message line preview-->
+                        <Label Grid.Row="8" Style="{StaticResource LabelSettingNameStyle}" Text="Message line in preview" />
+                        <Label Grid.Row="8" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding MessagePreviewInLine}" />
+                        <Image Grid.Row="8" Style="{StaticResource RightArrowImageStyle}" />
+
+                        <StackLayout Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding MessagePreviewInLineTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="9" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Optionally limits the number of lines shown for each message in the message list" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region auto theme-->
+                        <Label Grid.Row="10" Style="{StaticResource LabelSettingNameStyle}" Text="Auto theme switcher" />
+                        <Switch Grid.Row="10" IsToggled="{Binding AutoThemeSwitchIsToggled, Mode=TwoWay}" Style="{StaticResource SwitchStyle}" />
+                        <!--#endregion-->
+
+                        <!--#region dark theme-->
+                        <Label Grid.Row="11" Style="{StaticResource LabelSettingNameStyle}" Text="Use dark theme" />
+                        <Switch Grid.Row="11" IsToggled="{Binding ManualThemeSwitchIsToggled, Mode=TwoWay}" Style="{StaticResource SwitchStyle}" />
+                        <!--#endregion-->
+
+                        <!--#region auto link phone-->
+                        <Label Grid.Row="12" Style="{StaticResource LabelSettingNameStyle}" Text="Auto link phone numbers" />
+                        <Switch Grid.Row="12" IsToggled="{Binding AutoLinkPhoneIsToggled}" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="13" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Try to automatically detect phone number in the message" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region copy message title-->
+                        <Label Grid.Row="14" Style="{StaticResource LabelSettingNameStyle}" Text="Copy messages titles" />
+                        <Switch Grid.Row="14" IsToggled="{Binding CopyMessagesTitle,Mode=TwoWay}" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="15" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Include message titles when copying messages to the clipboard" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region track new messages-->
+                        <Label Grid.Row="16" Style="{StaticResource LabelSettingNameStyle}" Text="Track new/seen messages" />
+                        <Switch Grid.Row="16" IsToggled="{Binding TrackNewMessageIsToggled}" Style="{StaticResource SwitchStyle}" />
+                        <!--#endregion-->
+
+                        <!--#region mark messages seen on exit-->
+                        <Label Grid.Row="17" Style="{StaticResource LabelSettingNameStyle}" Text="Mark messages seen on exit" />
+                        <Switch Grid.Row="17" IsToggled="{Binding MarkMessageSeenOnExitIsToggled}" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="18" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Group new &amp; seen messages separately in the messages list" />
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="ALERT SETTING" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region play audible tone-->
+                        <Label Grid.Row="19" Style="{StaticResource LabelSettingNameStyle}" Text="Play audible tone" />
+                        <Switch Grid.Row="19" IsToggled="{Binding PlayAudibleToneIsToggled}" Style="{StaticResource SwitchStyle}" />
+                        <!--#endregion-->
+
+                        <!--#region choose default tone-->
+                        <Label Grid.Row="20" Style="{StaticResource LabelSettingNameStyle}" Text="Choose default tone" />
+                        <Label Grid.Row="20" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding ChooseDefaultTone}" />
+                        <Image Grid.Row="20" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="20" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChooseDefaultToneTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Row="21" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Tone to be played when sending applications do not specify me" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Always use default for high priority-->
+                        <Label Grid.Row="22" Style="{StaticResource LabelSettingNameStyle}" Text="Always use default for high priority" />
+                        <Switch Grid.Row="22" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="23" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Override application specific tone for high priority notifications and always play your default" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Play high priority as alarm-->
+                        <Label Grid.Row="24" Style="{StaticResource LabelSettingNameStyle}" Text="Play high priority as alarm" />
+                        <Switch Grid.Row="24" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="25" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Play tone for high priority notifications through alarm channel, by passing devices normal alert volume and silent mode enable with care" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region vibrates-->
+                        <Label Grid.Row="26" Style="{StaticResource LabelSettingNameStyle}" Text="Vibrate" />
+                        <Switch Grid.Row="26" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="27" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Also vibrate when notified" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Vibrate Iteration-->
+                        <Label Grid.Row="28" Style="{StaticResource LabelSettingNameStyle}" Text="Vibrate iteration" />
+                        <Label Grid.Row="28" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding VibrateIteration}" />
+                        <Image Grid.Row="28" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="28" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding VibrateIterationTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Row="29" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Vibrate this times for each alert" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Group status bar alert-->
+                        <Label Grid.Row="30" Style="{StaticResource LabelSettingNameStyle}" Text="Group status bar alert" />
+                        <Switch Grid.Row="30" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="31" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="If enabled, group multiple status bar alerts into me, otherwise show each individually" />
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="ACCOUNT SETTING" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Email-->
+                        <Label Grid.Row="32" Style="{StaticResource LabelSettingNameStyle}" Text="Email" />
+                        <Label Grid.Row="32" Grid.ColumnSpan="3" Margin="0,0,15,0" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding Email}"/>
+                        <!--#endregion-->
+
+                        <!--#region Edit quite hours-->
+                        <Label Grid.Row="33" Style="{StaticResource LabelSettingNameStyle}" Text="Edit quite hours" />
+                        <Image Grid.Row="33" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="33" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EditQuitHoursTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Row="34" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="During these days and times, alerts will not generate sound or vibrate on your all devices" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Device name-->
+                        <Label Grid.Row="35" Style="{StaticResource LabelSettingNameStyle}" Text="Device name" />
+                        <Label Grid.Row="35" Grid.ColumnSpan="3" Margin="0,0,15,0" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding DeviceName}"/>
+                        <!--#endregion-->
+
+                        <!--#region Notification dismissal Sync-->
+                        <Label Grid.Row="36" Style="{StaticResource LabelSettingNameStyle}" Text="Notification dismissal sync" />
+                        <Switch Grid.Row="36" IsToggled="{Binding NotificationDismissalASyncToggled,Mode=TwoWay}" Style="{StaticResource SwitchStyle}" />
+                        <StackLayout Grid.Row="37" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="When Push Notification App alerts are dismissal for this device notification bar, also dismiss them on your other Push Notification App devices and vice versa" />
+                            <Label Style="{StaticResource LabelSettingHeaderStyle}" Text="LICENSING"/>
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Push Notification App for team-->
+                        <Label Grid.Row="38" Style="{StaticResource LabelSettingNameStyle}" Text="Push notification App for team" />
+                        <Image Grid.Row="38" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="39" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Learn about Push Notification App for team" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Device License Status-->
+                        <Label Grid.Row="40" Style="{StaticResource LabelSettingNameStyle}" Text="Device license status" />
+                        <Label Grid.Row="40" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding DeviceLicenseStatus}" />
+                        <Image Grid.Row="40" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="41" Padding="10" Style="{StaticResource StackLayoutSeperatorStyle}"/>
+                        <!--#endregion-->
+
+                        <!--#region Rate application-->
+                        <Label Grid.Row="42" Style="{StaticResource LabelSettingNameStyle}" Text="Rate application" />
+                        <Image Grid.Row="42" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="43" Style="{StaticResource StackLayoutSeperatorStyle}">
+                            <Label Style="{StaticResource LabelSettingDescriptionStyle}" Text="Add feedback on store" />
+                        </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region about-->
+                        <Label Grid.Row="44" Style="{StaticResource LabelSettingNameStyle}" Text="About" />
+                        <Image Grid.Row="44" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="45" Padding="10" Style="{StaticResource StackLayoutSeperatorStyle}"/>
+                        <!--#endregion-->
+
+                        <!--#region logout-->
+                        <Label Grid.Row="46" Style="{StaticResource LabelSettingNameStyle}" Text="Logout" />
+                        <Image Grid.Row="46" Style="{StaticResource RightArrowImageStyle}" />
+                        <StackLayout Grid.Row="46" Grid.Column="0" Grid.ColumnSpan="4">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding LogoutTappedCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Row="47" Padding="10" Style="{StaticResource StackLayoutSeperatorStyle}"/>
+                        <!--#endregion-->
+
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+            <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

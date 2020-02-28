@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="Notification.View.Setting.AlertSetting.VibrateIterationPopup"
+             BackgroundColor="{DynamicResource PopBG}">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame Style="{StaticResource PopupFrameStyle}">
+        <StackLayout Padding="0">
+            <Label Text="Vibrate Iteration" Style="{StaticResource PopupLabelHeaderStyle}"/>
+            <ScrollView>
+                <StackLayout>
+                    <Grid
+                        IsClippedToBounds="True"
+                        RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0" 
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="1" />
+                        <CheckBox
+                            x:Name="CBxOne"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            ClassId="1"
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="1" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="2" />
+                        <CheckBox
+                            x:Name="CBxTwo"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            ClassId="2"
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="3" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="3" />
+                        <CheckBox
+                            x:Name="CBxThree"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            ClassId="3"                            
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+                        <BoxView Grid.Row="5" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="4" />
+                        <CheckBox
+                            x:Name="CBxFour"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            ClassId="4"                            
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}" />
+                        <BoxView Grid.Row="7" Style="{StaticResource PopupUnderBoxStyle}"/>
+
+                        <Label
+                            Grid.Row="8"
+                            Grid.Column="0"
+                            Style="{StaticResource LabelSettingNameStyle}"
+                            Text="5" />
+                        <CheckBox
+                            x:Name="CBxFive"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            ClassId="5"                            
+                            CheckedChanged="CheckBoxes_CheckedChanged"
+                            Style="{StaticResource PopupCheckBoxeStyle}"/>
+
+                        <Button
+                            Grid.Row="9"
+                            Grid.Column="0"
+                            Style="{StaticResource PopupLastButton}"
+                            Text="Cancel" Clicked="Button_Clicked"/>
+                        <Button
+                            Grid.Row="9"
+                            Grid.Column="1"
+                            Style="{StaticResource PopupLastButton}"
+                            Text="Save" Clicked="SaveButton_Clicked"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

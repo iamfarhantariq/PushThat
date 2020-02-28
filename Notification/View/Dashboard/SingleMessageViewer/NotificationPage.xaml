@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             mc:Ignorable="d"
+             x:Class="Notification.View.Dashboard.SingleMessageViewer.NotificationPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <Label 
+            x:Name="LblFrom"
+            Text="{Binding From}"
+            TextColor="{DynamicResource WhiteColor}"
+            FontSize="20"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid
+                    Margin="20,10,20,0" RowSpacing="0"
+                    IsClippedToBounds="True"
+                    ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ff:CachedImage
+                        x:Name="ImgLogo"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        Source="{Binding ImageUrl}"
+                        DownsampleToViewSize="True"
+                        HeightRequest="45"
+                        WidthRequest="45"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        VerticalTextAlignment="End"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="StartAndExpand"
+                        Margin="10,0,0,0"
+                        Style="{StaticResource LabelSettingNameStyle}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="LblMessageTitle" Text="{Binding MessageTitle}" FontSize="18" FontAttributes="Bold"/>
+                                <Span Text="&#x0a;"/>
+                                <Span Text="on " FontSize="13"/>
+                                <Span x:Name="LblDate" Text="{Binding Date}" FontSize="13"/>
+                                <Span Text=" at " FontSize="13"/>
+                                <Span x:Name="LblTime" Text="{Binding Time}" FontSize="13"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame 
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Padding="15,10,15,10"
+                        CornerRadius="20"
+                        Margin="0,5,0,5"
+                        BackgroundColor="{DynamicResource StackLayoutColor}">
+                        <Label
+                            x:Name="LblMessageBody"
+                            Text="{Binding MessageBody}"
+                            TextColor="White"
+                            FontSize="16"/>
+                    </Frame>
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        HeightRequest="30"
+                        Aspect="AspectFit"
+                        Margin="10,0,0,0"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Command="{Binding CopyCommand}"
+                        Source="Copy.png"/>
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        HeightRequest="30"
+                        Aspect="AspectFit"
+                        Margin="10,0,0,0"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Command="{Binding ShareCommand}"
+                        Source="Share.png"/>
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="4"
+                        HeightRequest="30"
+                        Aspect="AspectFit"
+                        Margin="10,0,0,0"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Command="{Binding DeleteCommand}"
+                        Source="Delete.png"/>
+                </Grid>
+            </ScrollView>
+            <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

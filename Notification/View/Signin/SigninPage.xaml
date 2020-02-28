@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="clr-namespace:Notification.Renderers"
+             xmlns:local="clr-namespace:Notification.Strings"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             mc:Ignorable="d"
+             x:Class="Notification.View.Signin.SigninPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Aspect="AspectFill" BackgroundColor="{DynamicResource TransparentColor}" HorizontalOptions="StartAndExpand" Source="SigninCurve.png" />
+            <StackLayout Spacing="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Margin="0" RowSpacing="0"
+                      VerticalOptions="FillAndExpand"
+                      IsClippedToBounds="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackLayout
+                        Spacing="0"
+                        Grid.Row="0"
+                        Padding="10,30,10,0"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <Label
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="25"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            Text="SIGN IN"
+                            HorizontalTextAlignment="Start" />
+                        <Label
+                            Text="{x:Static local:NotificationStrings.SigninDiscription}"
+                            Style="{StaticResource LabelSubtitleStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Padding="20,0,20,0"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                        <viewModel:RoundedEntry
+                            PlaceholderColor="{Binding EmailColor}"
+                            TextColor="{Binding EmailColor}"
+                            Text="{Binding Email}"
+                            FontFamily="{StaticResource NormalFont}"
+                            Keyboard="Email"
+                            Placeholder="Email"
+                            ReturnType="Next"
+                            Margin="0,0,0,5"
+                            TextChanged="RoundedEntry_TextChanged"/>
+
+                        <viewModel:RoundedEntry
+                            PlaceholderColor="{Binding PasswordColor}"
+                            TextColor="{Binding PasswordColor}"
+                            Text="{Binding Password}"
+                            FontFamily="{StaticResource NormalFont}"
+                            IsPassword="True"
+                            Placeholder="Password" 
+                            Margin="0,5,0,0"
+                            ReturnType="Done"
+                            TextChanged="RoundedEntry_TextChanged"/>
+
+                        <Label
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="Subtitle"
+                            HorizontalOptions="End"
+                            Text="Forgot Password?"
+                            TextColor="{DynamicResource ForgetPassword}"
+                            TextDecorations="Underline">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ForgetPasswordCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Row="2"
+                        Spacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="EndAndExpand">
+
+                        <Button 
+                            Text="Sign In"
+                            VerticalOptions="EndAndExpand"
+                            Command="{Binding SigninCommand}"/>
+
+                        <Button 
+                            Text="Create Account"
+                            VerticalOptions="EndAndExpand"
+                            BackgroundColor="Transparent"
+                            TextColor="{DynamicResource SecondaryTextColor}"
+                            Command="{Binding CreateAccountCommand}"/>
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

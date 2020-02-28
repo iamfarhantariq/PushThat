@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Notification.Themes.BaseTheme">
+
+    <OnPlatform x:Key="BoldFont" x:TypeArguments="x:String">
+        <On Platform="Android" Value="OpenSans-Bold.ttf#Open Sans" />
+        <On Platform="iOS" Value="OpenSans-Bold" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="NormalFont" x:TypeArguments="x:String">
+        <On Platform="Android" Value="OpenSans-Regular.ttf#Open Sans" />
+        <On Platform="iOS" Value="OpenSans-Regular" />
+    </OnPlatform>
+
+    <ControlTemplate x:Key="DaysGrid">
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+                <ColumnDefinition Width="0.1428*"/>
+            </Grid.ColumnDefinitions>
+
+            <ImageButton x:Name="MonBtn" Grid.Column="0" ClassId="1" Style="{StaticResource TimeImage}" Source="{Binding MondayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference MonBtn}"/>
+            <ImageButton x:Name="TueBtn" Grid.Column="1" ClassId="2" Style="{StaticResource TimeImage}" Source="{Binding TuesdayImage   }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference TueBtn}"/>
+            <ImageButton x:Name="WedBtn" Grid.Column="2" ClassId="3" Style="{StaticResource TimeImage}" Source="{Binding WednesdayImage }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WedBtn}"/>
+            <ImageButton x:Name="ThuBtn" Grid.Column="3" ClassId="4" Style="{StaticResource TimeImage}" Source="{Binding ThursdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference ThuBtn}"/>
+            <ImageButton x:Name="FriBtn" Grid.Column="4" ClassId="5" Style="{StaticResource TimeImage}" Source="{Binding FridayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference FriBtn}"/>
+            <ImageButton x:Name="SatBtn" Grid.Column="5" ClassId="6" Style="{StaticResource TimeImage}" Source="{Binding SaturdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference SatBtn}"/>
+            <ImageButton x:Name="SunBtn" Grid.Column="6" ClassId="7" Style="{StaticResource TimeImage}" Source="{Binding SundayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference SunBtn}"/>
+
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+        <Setter Property="BarTextColor" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+
+    <Style x:Key="FrameDays" TargetType="Frame">
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Padding" Value="40" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+        <Setter Property="BorderColor" Value="#4798d3" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#2a68b0" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="Body" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="TimeImage" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="Grid.Row" Value="0" />
+        <Setter Property="Aspect" Value="Fill" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="PopupFrameStyle" TargetType="Frame">
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
+        <Setter Property="Margin" Value="20" />
+    </Style>
+
+    <Style x:Key="PopupLabelHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="Margin" Value="10,10,0,0" />
+    </Style>
+
+    <Style x:Key="PopupUnderBoxStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PopUnderLine}" />
+        <Setter Property="Margin" Value="10,0,10,0" />
+        <Setter Property="Grid.Column" Value="0" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+    </Style>
+
+    <Style x:Key="SwitchStyle" TargetType="Switch">
+        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="OnColor" Value="#4798d3" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="Grid.Column" Value="2" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+        <Setter Property="ThumbColor" Value="White" />
+    </Style>
+
+    <Style x:Key="ActivityIndicator" TargetType="ContentView">
+        <Setter Property="IsVisible" Value="{Binding IsWorking}" />
+        <Setter Property="IsEnabled" Value="{Binding IsWorking}" />
+        <Setter Property="AbsoluteLayout.LayoutBounds" Value="0,0,1,1" />
+        <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
+    </Style>
+
+    <Style x:Key="RightArrowImageStyle" TargetType="Image">
+        <Setter Property="HeightRequest" Value="15" />
+        <Setter Property="Grid.Column" Value="3" />
+        <Setter Property="Source" Value="RightArrow.png" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="Margin" Value="0,5,10,5" />
+    </Style>
+
+    <Style x:Key="EntryCodeStyle" TargetType="Entry">
+        <Setter Property="WidthRequest" Value="45" />
+        <Setter Property="MaxLength" Value="1" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Keyboard" Value="Numeric" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+    </Style>
+
+    <Style x:Key="LabelNavBarStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor" Value="{DynamicResource NavigationBarColor}" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style x:Key="NavBarNameStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor" Value="{DynamicResource WhiteColor}" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <Style x:Key="LabelSubtitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style x:Key="LabelSettingHeaderStyle" TargetType="Label">
+        <Setter Property="Margin" Value="20,10,0,5" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="{DynamicResource SettingHeader}" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+    </Style>
+
+    <Style x:Key="LabelSettingNameStyle" TargetType="Label">
+        <Setter Property="Margin" Value="20,10,0,10" />
+        <Setter Property="Grid.Column" Value="0" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="TextColor" Value="{DynamicResource SettingName}" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+    </Style>
+
+    <Style x:Key="NormalLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="20,10,0,10" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="TextColor" Value="{DynamicResource SettingName}" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+    </Style>
+
+    <Style x:Key="PopupLastButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource StackLayoutColor}" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+    <Style x:Key="LabelSettingPropertyStyle" TargetType="Label">
+        <Setter Property="Margin" Value="0,10,0,10" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+        <Setter Property="TextColor" Value="{DynamicResource SettingProperty}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+    </Style>
+
+    <Style x:Key="LabelSettingDescriptionStyle" TargetType="Label">
+        <Setter Property="Margin" Value="20,5,20,10" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="TextColor" Value="{DynamicResource SettingDiscription}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}" />
+    </Style>
+
+    <Style x:Key="PopupCheckBoxeStyle" TargetType="CheckBox">
+        <Setter Property="Margin" Value="0,0,15,0" />
+        <Setter Property="Color" Value="{DynamicResource CheckBox}" />
+        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+    </Style>
+
+    <Style x:Key="StackLayoutSeperatorStyle" TargetType="StackLayout">
+        <Setter Property="Grid.Column" Value="0" />
+        <Setter Property="Grid.ColumnSpan" Value="4" />
+        <Setter Property="Spacing" Value="0" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource StackLayoutSeprator}" />
+    </Style>
+
+</ResourceDictionary>

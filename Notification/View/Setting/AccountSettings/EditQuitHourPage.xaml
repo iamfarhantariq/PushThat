@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Notification.Strings"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             xmlns:activityindicator="clr-namespace:Notification.View.ActivityIndicator"
+             x:Class="Notification.View.Setting.AccountSettings.EditQuitHourPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <NavigationPage.TitleView>
+        <Label Text="Edit Quit Hours" Style="{StaticResource NavBarNameStyle}" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Spacing="10">
+                    <Label FontFamily="{StaticResource BoldFont}" FontSize="25" TextColor="{DynamicResource PrimaryColor}" Text="Days" HorizontalTextAlignment="Start" Margin="20,10,0,0"/>
+                    <Label Style="{StaticResource LabelSubtitleStyle}" Margin="20,0,0,10" Text="{x:Static local:NotificationStrings.EditQuitHoursDiscription}"/>
+             
+                    <Frame CornerRadius="10" Margin="10,0,10,0" Padding="0,5,0,5" BackgroundColor="LightGray">
+                        <Grid IsClippedToBounds="False" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding WholeDaysTappedCommand}" CommandParameter="{Reference WholeDayView}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Style="{StaticResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}" Text="Whole Days" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding WholeDayText}" TextColor="{DynamicResource FrameContainerElement}" Style="{StaticResource LabelSettingNameStyle}"/>
+                            </StackLayout>
+                            <BoxView Grid.Row="0" Grid.Column="1" WidthRequest="1" HeightRequest="20" BackgroundColor="LightGray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                            <Switch Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" OnColor="#4798d3" ThumbColor="White"/>
+
+                            <Grid x:Name="WholeDayView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ClassId="1" IsEnabled="{Binding IsVisibleWD}" IsVisible="{Binding IsVisibleWD}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ImageButton x:Name="WDMonBtn" Grid.Column="0" ClassId="1" Style="{StaticResource TimeImage}" Source="{Binding MondayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDMonBtn}"/>
+                                <ImageButton x:Name="WDTueBtn" Grid.Column="1" ClassId="2" Style="{StaticResource TimeImage}" Source="{Binding TuesdayImage   }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDTueBtn}"/>
+                                <ImageButton x:Name="WDWedBtn" Grid.Column="2" ClassId="3" Style="{StaticResource TimeImage}" Source="{Binding WednesdayImage }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDWedBtn}"/>
+                                <ImageButton x:Name="WDThuBtn" Grid.Column="3" ClassId="4" Style="{StaticResource TimeImage}" Source="{Binding ThursdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDThuBtn}"/>
+                                <ImageButton x:Name="WDFriBtn" Grid.Column="4" ClassId="5" Style="{StaticResource TimeImage}" Source="{Binding FridayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDFriBtn}"/>
+                                <ImageButton x:Name="WDSatBtn" Grid.Column="5" ClassId="6" Style="{StaticResource TimeImage}" Source="{Binding SaturdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDSatBtn}"/>
+                                <ImageButton x:Name="WDSunBtn" Grid.Column="6" ClassId="7" Style="{StaticResource TimeImage}" Source="{Binding SundayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference WDSunBtn}"/>
+
+                            </Grid>
+                            <!--<ContentView x:Name="WholeDayView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ClassId="1" IsEnabled="{Binding IsVisibleWD}" IsVisible="{Binding IsVisibleWD}" ControlTemplate="{StaticResource DaysGrid}"/>-->
+                            <!--<dayTimeView:SetDayTimeView x:Name="WholeDayView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ClassId="1" IsVisible="{Binding IsVisibleWD,Mode=TwoWay}"/>-->
+                        </Grid>
+                    </Frame>
+
+                    <Frame CornerRadius="10"  Margin="10,0,10,0" Padding="0,5,0,5" BackgroundColor="LightGray">
+                        <Grid IsClippedToBounds="False" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CustomHoursTappedCommand}" CommandParameter="{Reference CustomHourView}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Style="{StaticResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}" Text="Custom Hours" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding CustomHoursText}" TextColor="{DynamicResource FrameContainerElement}" Style="{StaticResource LabelSettingNameStyle}"/>
+                            </StackLayout>
+                            <BoxView Grid.Row="0" Grid.Column="1" WidthRequest="1" HeightRequest="20" BackgroundColor="LightGray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                            <Switch Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" OnColor="#4798d3" ThumbColor="White"/>
+
+                            <Grid x:Name="CustomHourView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ClassId="2" IsEnabled="{Binding IsVisibleCH}" IsVisible="{Binding IsVisibleCH}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ImageButton x:Name="CHMonBtn" Grid.Column="0" ClassId="1" Style="{StaticResource TimeImage}" Source="{Binding MondayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHMonBtn}"/>
+                                <ImageButton x:Name="CHTueBtn" Grid.Column="1" ClassId="2" Style="{StaticResource TimeImage}" Source="{Binding TuesdayImage   }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHTueBtn}"/>
+                                <ImageButton x:Name="CHWedBtn" Grid.Column="2" ClassId="3" Style="{StaticResource TimeImage}" Source="{Binding WednesdayImage }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHWedBtn}"/>
+                                <ImageButton x:Name="CHThuBtn" Grid.Column="3" ClassId="4" Style="{StaticResource TimeImage}" Source="{Binding ThursdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHThuBtn}"/>
+                                <ImageButton x:Name="CHFriBtn" Grid.Column="4" ClassId="5" Style="{StaticResource TimeImage}" Source="{Binding FridayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHFriBtn}"/>
+                                <ImageButton x:Name="CHSatBtn" Grid.Column="5" ClassId="6" Style="{StaticResource TimeImage}" Source="{Binding SaturdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHSatBtn}"/>
+                                <ImageButton x:Name="CHSunBtn" Grid.Column="6" ClassId="7" Style="{StaticResource TimeImage}" Source="{Binding SundayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CHSunBtn}"/>
+
+                                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" IsVisible="{Binding FrameVisible}" Margin="10,10,30,10" HasShadow="True" Padding="5" CornerRadius="10" BackgroundColor="LightGray">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding StartTimeTappedCommand}" CommandParameter="{x:Reference STimePicker}"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <Label Text="Start Time" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource LabelSettingNameStyle}"/>
+                                        <Label Text="{Binding CHStartTime}" TextColor="{DynamicResource FrameContainerElement}" TextDecorations="Underline" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource LabelSettingNameStyle}"/>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" IsVisible="{Binding FrameVisible}" Margin="30,10,10,10" HasShadow="True" Padding="5" CornerRadius="10" BackgroundColor="LightGray">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EndTimeTappedCommand}" CommandParameter="{x:Reference ETimePicker}"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <Label Text="End Time" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource LabelSettingNameStyle}"/>
+                                        <Label Text="{Binding CHEndTime}" TextColor="{DynamicResource FrameContainerElement}" TextDecorations="Underline" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource LabelSettingNameStyle}"/>
+                                    </StackLayout>
+                                </Frame>
+
+                                <TimePicker x:Name="STimePicker" Time="12:00:00" IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,10,0" Style="{StaticResource LabelSettingNameStyle}">
+                                    <TimePicker.Format>hh:mm tt</TimePicker.Format>
+                                </TimePicker>
+                                <TimePicker x:Name="ETimePicker" Time="12:00:00" IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,10,0" Style="{StaticResource LabelSettingNameStyle}">
+                                    <TimePicker.Format>hh:mm tt</TimePicker.Format>
+                                </TimePicker>
+
+                            </Grid>
+                        </Grid>
+                    </Frame>
+
+                    <Frame CornerRadius="10" Margin="10,0,10,30" Padding="0,5,0,5" BackgroundColor="LightGray">
+                        <Grid IsClippedToBounds="True" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CustomDaysHoursTappedCommand}" CommandParameter="{Reference CustomDayHourView}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Style="{StaticResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}" Text="Custom Days Hours" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding CustomDayHoursText}" TextColor="{DynamicResource FrameContainerElement}" Style="{StaticResource LabelSettingNameStyle}"/>
+                            </StackLayout>
+                            <BoxView Grid.Row="0" Grid.Column="1" WidthRequest="1" HeightRequest="20" BackgroundColor="LightGray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                            <Switch Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" OnColor="#4798d3" ThumbColor="White"/>
+
+                            <Grid x:Name="CustomDayHourView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ClassId="3" IsEnabled="{Binding IsVisibleCDH}" IsVisible="{Binding IsVisibleCDH}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="10" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                    <ColumnDefinition Width="0.1428*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ImageButton x:Name="CDHMonBtn" Grid.Row="0" Grid.Column="0" ClassId="1" Style="{StaticResource TimeImage}" Source="{Binding MondayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHMonBtn}"/>
+                                <ImageButton x:Name="CDHTueBtn" Grid.Row="0" Grid.Column="1" ClassId="2" Style="{StaticResource TimeImage}" Source="{Binding TuesdayImage   }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHTueBtn}"/>
+                                <ImageButton x:Name="CDHWedBtn" Grid.Row="0" Grid.Column="2" ClassId="3" Style="{StaticResource TimeImage}" Source="{Binding WednesdayImage }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHWedBtn}"/>
+                                <ImageButton x:Name="CDHThuBtn" Grid.Row="0" Grid.Column="3" ClassId="4" Style="{StaticResource TimeImage}" Source="{Binding ThursdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHThuBtn}"/>
+                                <ImageButton x:Name="CDHFriBtn" Grid.Row="0" Grid.Column="4" ClassId="5" Style="{StaticResource TimeImage}" Source="{Binding FridayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHFriBtn}"/>
+                                <ImageButton x:Name="CDHSatBtn" Grid.Row="0" Grid.Column="5" ClassId="6" Style="{StaticResource TimeImage}" Source="{Binding SaturdayImage  }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHSatBtn}"/>
+                                <ImageButton x:Name="CDHSunBtn" Grid.Row="0" Grid.Column="6" ClassId="7" Style="{StaticResource TimeImage}" Source="{Binding SundayImage    }" Command="{Binding ImageTappedCommand}" CommandParameter="{Reference CDHSunBtn}"/>
+
+                                <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" SeparatorVisibility="Default" HasUnevenRows="True" VerticalScrollBarVisibility="Never" HeightRequest="{Binding CHDHeightRequest}" IsVisible="{Binding LvIsVisible}" SelectionMode="None" ItemsSource="{Binding ItemSource}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid Padding="0" RowSpacing="0" ColumnSpacing="20">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Grid.Row="0" Grid.Column="0" Margin="5,10,0,0"     Padding="0" HeightRequest="30" Text="{Binding Day}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Style="{DynamicResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" FontFamily="{StaticResource BoldFont}"/>
+                                                    <mr:Label Grid.Row="0" Grid.Column="1" Margin="0,10,10,0" Padding="0" HeightRequest="30" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" ClassId="{Binding Day}" Text="{Binding StartTimeS}" TextDecorations="Underline" Style="{DynamicResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" Tapped="StartTimeSTapped"/>
+                                                    <mr:Label Grid.Row="0" Grid.Column="2" Margin="0,10,10,0" Padding="0" HeightRequest="30" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" ClassId="{Binding Day}" Text="{Binding EndTimeS}" TextDecorations="Underline" Style="{DynamicResource LabelSettingNameStyle}" TextColor="{DynamicResource FrameContainerElement}" Tapped="EndTimeSTapped"/>
+
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+
+                </StackLayout>
+            </ScrollView>
+            <activityindicator:ActivityIndicator Style="{StaticResource ActivityIndicator}"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

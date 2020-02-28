@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:viewModel="clr-namespace:Notification.Renderers"
+             mc:Ignorable="d"
+             x:Class="Notification.View.EditCategory.ItemSelectedPage" 
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <Label Style="{StaticResource NavBarNameStyle}" Text="{Binding NavigationLabel}" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{DynamicResource NavigationBarColor}" 
+                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                      Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Row="0" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ff:CachedImage Source="{Binding GalleryImage}" Aspect="AspectFill" DownsampleToViewSize="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                         HeightRequest="200" WidthRequest="200"/>
+                    </Frame>
+                    <ImageButton Source="ChangeImage.png" VerticalOptions="End" HorizontalOptions="End" Grid.Row="0" Grid.Column="1"
+                                 HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Margin="0,0,10,5" Command="{Binding ChangedImageTappedCommand}"/>
+
+                    <viewModel:RoundedEntry Text="{Binding From,Mode=TwoWay}" Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}" Placeholder="Change category name"
+                                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ReturnType="Done" TextChanged="RoundedEntry_TextChanged"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Margin="10,10,0,0" VerticalOptions="CenterAndExpand" Style="{StaticResource LabelSettingNameStyle}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Change Tone" TextColor="White"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
+                    <Label Grid.Row="2" Grid.Column="1" Margin="0,10,20,0" TextColor="WhiteSmoke" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Style="{StaticResource LabelSettingPropertyStyle}" Text="{Binding SelectedTone}" />
+                    <Image Grid.Row="2" Grid.Column="2" Margin="0,15,0,5" HorizontalOptions="EndAndExpand" Style="{StaticResource RightArrowImageStyle}" />
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SelectedToneTappedCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+                <BoxView BackgroundColor="White" HeightRequest="0.5" Margin="20,0,20,0"/>
+                <Button Text="Save Changes" VerticalOptions="EndAndExpand" Margin="0,0,0,20" Command="{Binding SaveChangesCommand}"/>
+
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
